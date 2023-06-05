@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Información del Estudiante</title>
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            margin-left: 0px;
+            margin-right: 0px;
+            margin-top: 10px;
+            background-color: white;
+            width: 100%;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        fieldset {
+            border: none;
+            padding: 0;
+        }
+        
+        legend {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: black;
+        }
+        
+        .container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 20px;
+        }
+        
+        .container1 {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+        
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background-color: #f0f0f0;
+}
+
+h2 {
+  margin: 0;
+}
+
+img {
+  width: 150px;
+  height: auto;
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.row span:first-child {
+  font-weight: bold;
+}
+
+@media (max-width: 600px) {
+  img {
+    width: 100px;
+  }
+}
+
+@media (max-width: 400px) {
+  .row {
+    flex-direction: column;
+  }
+}
+        .section {
+            background-color: white ;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+        }
+        
+        .section h2 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #333333;
+        }
+        
+        .section img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section .row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .section .row:last-child {
+            margin-bottom: 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+        
+        button {
+ position: relative;
+ display: inline-block;
+ cursor: pointer;
+ outline: none;
+ border: 0;
+ vertical-align: middle;
+ text-decoration: none;
+ background: transparent;
+ padding: 0;
+ font-size: inherit;
+ font-family: inherit;
+}
+
+button.learn-more {
+ width: 12rem;
+ height: auto;
+}
+
+button.learn-more .circle {
+ transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+ position: relative;
+ display: block;
+ margin: 0;
+ width: 3rem;
+ height: 3rem;
+ background: #282936;
+ border-radius: 1.625rem;
+}
+
+button.learn-more .circle .icon {
+ transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+ position: absolute;
+ top: 0;
+ bottom: 0;
+ margin: auto;
+ background: #fff;
+}
+
+button.learn-more .circle .icon.arrow {
+ transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+ left: 0.625rem;
+ width: 1.125rem;
+ height: 0.125rem;
+ background: none;
+}
+
+button.learn-more .circle .icon.arrow::before {
+ position: absolute;
+ content: "";
+ top: -0.29rem;
+ right: 0.0625rem;
+ width: 0.625rem;
+ height: 0.625rem;
+ border-top: 0.125rem solid #fff;
+ border-right: 0.125rem solid #fff;
+ transform: rotate(45deg);
+}
+
+button.learn-more .button-text {
+ transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+ position: absolute;
+ top: 0;
+ left: 0;
+ right: 0;
+ bottom: 0;
+ padding: 0.75rem 0;
+ margin: 0 0 0 1.85rem;
+ color: #282936;
+ font-weight: 750;
+ line-height: 1.6;
+ text-align: center;
+ text-transform: uppercase;
+}
+
+button:hover .circle {
+ width: 100%;
+}
+
+button:hover .circle .icon.arrow {
+ background: #fff;
+ transform: translate(1rem, 0);
+}
+
+button:hover .button-text {
+ color: #fff;
+}
+
+
+#notification-bar {
+            background-color: white;
+  border: 3px solid black;
+  text-align: center;
+  width: 98%; /* Ajusta el ancho automáticamente según el contenido */
+  margin: 0 auto; /* Centra horizontalmente el cuadro */
+  padding: 10px; /* Agrega un espacio interno al contenido */
+
+        }
+
+h1 {
+  color: rgba(0,95,172,255);
+  font-size: 30pt;
+  margin: 0; /* Elimina el margen por defecto del h1 */
+  font-family:Segoe UI Black;
+}
+
+
+        #top-bar {
+            background-color: black;
+            padding: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        #top-bar .company-logo {
+            display: inline-block;
+            background-image: url("https://lh3.googleusercontent.com/pw/AJFCJaU4R562Dg5AxoRzE5_PSC4p8qm3YWfHF5ieH3bc_3xbAXsUl9yHfKi4AWRZeX6_vYq8XDQcJ1YJN6UPMuJmHK2IXBZbMMrZVCImFrL8k4f44uPyOLAhjAAF-z9ycqEMzOT_Zbk7N-bZfMbOFcKtp58=w453-h90-s-no?authuser=0");
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            width: 400px;
+            height: 80px;
+        }
+
+        .btncita {
+  background-color: #4287f5; /* Color gris */
+  color: white; /* Texto en color blanco */
+  padding: 8px 16px; /* Espaciado interno del botón */
+  border: none; /* Sin borde */
+  border-radius: 5px; /* Esquinas redondeadas */
+  cursor: pointer; /* Cursor de tipo puntero */
+  float: right; /* Flotar a la derecha */
+  margin-left: 10px; /* Espacio a la izquierda del botón */
+}
+    </style>
+</head>
+<body>
+    
+    <div id="top-bar">
+        <span class="company-logo"></span>
+    </div>
+
+    <div id="notification-bar">
+<h1>Ficha del Estudiante Dece</h1>
+</div><br>
+    <fieldset >
+
+    <div class="container1">
+        <div class="section">
+            <table>
+                        <thead>
+                <tr>
+                  <th colspan="2">
+                    <h2 style="display: inline-block;">Información del Estudiante</h2>
+                    <button class="btncita" onclick="window.open('C:/Users/Usuario/Desktop/CARPETA GENERAL/HTML DECE/cita.html')">Generar cita</button>
+                  </th>
+                </tr>
+              </thead>
+            <tr>
+                <td>
+            <h2 >Estudiante</h2>
+            <img src="C:\Users\Usuario\Desktop\PAGINA WEB VENTAS\IMAGENES\Jay_Jay_Jaydin_Black_Anime_Character_with_African_American_feat_ffed1798-b42e-422b-8cd1-6db7da874470.png" alt="Foto del estudiante">
+                </td>
+            <td>
+            <div class="row">
+            <h2>DATOS DEL ESTUDIANTE</h2>
+            </div>
+            <div class="row">
+                <span>Cédula:</span>
+                <span>1752658276</span>
+                
+            </div>
+            <div class="row">
+                <span>Nombre:</span>
+                <span>KEVIN RICARDO VILLAFUERTE FAJARDO</span>
+            </div>
+            <div class="row">
+                <span>Curso:</span>
+                <span>3 INFORMÁTICA "A"</span>
+            </div>
+            <div class="row">
+                <span>Teléfono:</span>
+                <span>0994589541</span>
+            </div>
+            <div class="row">
+                <span>Correo Electrónico:</span>
+                <span>kevin@kaizencorp.com.ec</span>
+            </div>
+        </td>
+        </tr>
+            <tr>
+                <td>
+            <h2>Representante</h2>
+            <div class="row">
+                <span>Cédula:</span>
+                <span>170000000</span>
+                
+            </div>
+            <div class="row">
+                <span>Nombres:</span>
+                <span>Elizabeth Fajardo</span>
+            </div>
+            <div class="row">
+                <span>Dirección:</span>
+                <span>Sta. Rosa de chillogallo</span>
+            </div>
+            <div class="row">
+                <span>Teléfono:</span>
+                <span>0998765654</span>
+            </div>
+            <div class="row">
+                <span>Correo Electrónico:</span>
+                <span>NA</span>
+            </div>
+        </td>
+
+                <td>
+            <div class="row">
+             <h2>Información Adicional</h2>
+             </div>
+            <div class="row">
+                <span>Promedio General: </span>
+                <span>8.72</span>
+            </div>
+            <div class="row">
+                <span>Conducta General:</span>
+                <span>A</span>
+            </div>
+            <div class="row">
+                <span>NEE:</span>
+                <span>NO TIENE NECESIDADES EDUCATIVAS ESPECIALES</span>
+            </div>
+        </td>
+            </tr>
+            </table>
+        </div>
+    </div>
+    </fieldset><br>
+    <fieldset>
+        <div id="notification-bar">
+        <h1> Fichas</h1>
+    </div>
+    <br><br>
+    <div class="container1">
+        <div class="section">
+            <button class="learn-more">
+  <span class="circle" aria-hidden="true">
+  <span class="icon arrow"></span>
+  </span>
+  <span class="button-text">Alumno</span>
+</button>
+        
+     
+            <button class="learn-more">
+  <span class="circle" aria-hidden="true">
+  <span class="icon arrow"></span>
+  </span>
+  <span class="button-text">Familiares</span>
+</button>
+        
+            <button class="learn-more">
+  <span class="circle" aria-hidden="true">
+  <span class="icon arrow"></span>
+  </span>
+  <span class="button-text">Académico</span>
+</button>
+
+            <button class="learn-more">
+  <span class="circle" aria-hidden="true">
+  <span class="icon arrow"></span>
+  </span>
+  <span class="button-text">Médico</span>
+</button>
+        <br><br>
+            <button class="learn-more">
+  <span class="circle" aria-hidden="true">
+  <span class="icon arrow"></span>
+  </span>
+  <span class="button-text">Financiero</span>
+</button>
+        
+            <button class="learn-more">
+  <span class="circle" aria-hidden="true">
+  <span class="icon arrow"></span>
+  </span>
+  <span class="button-text">Social</span>
+</button>
+        </div>
+    </div>
+</fieldset><br>
+<fieldset>
+    <div id="notification-bar">
+    <h1> Procesos</h1>
+</div>
+<br><br>
+    <div class="container1">
+        <div class="section">
+            <!-- Contenido de la sección  -->
+            <button class="learn-more">
+  <span class="circle" aria-hidden="true">
+  <span class="icon arrow"></span>
+  </span>
+  <span class="button-text" onclick="window.open(' C:/Users/Usuario/Desktop/CARPETA GENERAL/HTML DECE/pantalladeteccion.html')">Detección</span>
+</button>
+        
+            <!-- Contenido de la sección   -->
+            <button class="learn-more">
+  <span class="circle" aria-hidden="true">
+  <span class="icon arrow"></span>
+  </span>
+  <span class="button-text" onclick="window.open(' C:/Users/Usuario/Desktop/CARPETA GENERAL/HTML DECE/pantallaintervencion.html')">Intervención</span>
+</button>
+
+            <!-- Contenido de la sección  -->
+            <button class="learn-more">
+  <span class="circle" aria-hidden="true">
+  <span class="icon arrow"></span>
+  </span>
+  <span class="button-text" onclick="window.open(' C:/Users/Usuario/Desktop/CARPETA GENERAL/HTML DECE/pantalladerivacion.html')">Derivación</span>
+</button>
+
+            <!-- Contenido de la sección  -->
+            <button class="learn-more">
+  <span class="circle" aria-hidden="true">
+  <span class="icon arrow"></span>
+  </span>
+  <span class="button-text" onclick="window.open(' C:/Users/Usuario/Desktop/CARPETA GENERAL/HTML DECE/pantallaseguimiento.html')">Seguimiento</span>
+</button>
+        </div>
+    </div>
+</fieldset><br>
+<fieldset>
+    <div id="notification-bar">
+    <h1> Historial DECE</h1>
+</div><br>
+<div class="container1">
+    <div class="section">
+<table id="tabla">
+  <thead>
+    <tr>
+      <th>Fecha</th>
+      <th>Tipo de Caso</th>
+      <th>Descripción</th>
+      <th>Estado</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>01/05/2023</td>
+      <td>Académico</td>
+      <td>Reprobó el examen final</td>
+      <td>Abierto</td>
+      <td> <a href="#">Visualizar</a>
+    </tr>
+    <tr>
+      <td>10/06/2023</td>
+      <td>Conducta</td>
+      <td>Comportamiento disruptivo en clase</td>
+      <td>Resuelto</td>
+      <td> <a href="#">Visualizar</a>
+    </tr>
+    <tr>
+      <td>22/07/2023</td>
+      <td>Salud</td>
+      <td>Lesión en el deporte</td>
+      <td>En proceso</td>
+      <td> <a href="#">Visualizar</a>
+    </tr>
+    <tr>
+      <td>15/09/2023</td>
+      <td>Conducta</td>
+      <td>Incumplimiento de normas escolares - Llegada tarde</td>
+      <td>Resuelto</td>
+      <td> <a href="#">Visualizar</a>
+    </tr>
+    <tr>
+      <td>03/11/2023</td>
+      <td>Conducta</td>
+      <td>Uso inapropiado del lenguaje en el aula</td>
+      <td>Resuelto</td>
+      <td> <a href="#">Visualizar</a>
+    </tr>
+    <tr>
+      <td>18/12/2023</td>
+      <td>Salud</td>
+      <td>Enfermedad durante el parcial - Ausencia prolongada</td>
+      <td>En proceso</td>
+      <td> <a href="#">Visualizar</a>
+    </tr>
+    <tr>
+      <td>07/02/2024</td>
+      <td>Académico</td>
+      <td>Desempeño destacado en proyecto</td>
+      <td>Resuelto</td>
+      <td> <a href="#">Visualizar</a>
+    </tr>
+    <tr>
+      <td>25/03/2024</td>
+      <td>Conducta</td>
+      <td>Hostigamiento verbal a compañeros</td>
+      <td>Resuelto</td>
+      <td> <a href="#">Visualizar</a>
+    </tr>
+    <tr>
+      <td>09/05/2024</td>
+      <td>Conducta</td>
+      <td>Falta injustificada a clases</td>
+      <td>Abierto</td>
+      <td> <a href="#">Visualizar</a>
+    </tr>
+    <tr>
+      <td>16/07/2024</td>
+      <td>Académico</td>
+      <td>Participación en olimpiadas académicas</td>
+      <td>Resuelto</td>
+      <td> <a href="#">Visualizar</a>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</fieldset>
+<script>
+  const tabla = document.getElementById('tabla');
+  const celdasEstado = tabla.querySelectorAll('td:nth-child(4)');
+
+  celdasEstado.forEach((celda) => {
+    const estado = celda.innerText;
+
+    switch (estado) {
+      case 'Abierto':
+        celda.style.backgroundColor = 'white';
+        break;
+      case 'En proceso':
+        celda.style.backgroundColor = '#F7DC6F';
+        break;
+      case 'Resuelto':
+        celda.style.backgroundColor = '#7DCEA0';
+        celda.style.color = 'white';
+        break;
+      default:
+        break;
+    }
+  });
+</script>
+<!-- <script>
+    const tabla = document.getElementById('tabla');
+    const filas = tabla.getElementsByTagName('tr');
+
+    for (let i = 1; i < filas.length; i++) {
+      const estado = filas[i].getElementsByTagName('td')[3].innerText;
+
+      switch (estado) {
+        case 'Abierto':
+          filas[i].style.backgroundColor = 'white';
+          break;
+        case 'En proceso':
+          filas[i].style.backgroundColor = '#F7DC6F';
+          break;
+        case 'Resuelto':
+          filas[i].style.backgroundColor = '#7DCEA0';
+          filas[i].style.color = 'white';
+          break;
+        default:
+          break;
+      }
+    }
+  </script> -->
+</body>
+</html>
